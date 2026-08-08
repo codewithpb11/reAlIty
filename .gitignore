@@ -1,0 +1,32 @@
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Training dataset - large, and mostly reconstructable via the collection
+# scripts + Parveshiiii/AI-vs-Real rather than worth versioning directly.
+dataset/
+
+# Trained model - distributed via GitHub Releases instead (too large for git).
+reality-finetuned/
+
+# Stray incomplete files from interrupted dataset-collection runs.
+*.tmp.jpg
+
+# Logs from dataset collection scripts - useful locally, not repo material.
+*.log
+
+# OS junk
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+dataset.zip 
