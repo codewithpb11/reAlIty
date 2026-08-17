@@ -1,0 +1,15 @@
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+python-multipart>=0.0.9
+
+# Re-use existing project dependencies
+customtkinter>=5.2.0
+torch>=2.2.0
+torchvision>=0.17.0
+transformers>=4.40.0
+Pillow>=10.0.0
+pillow-avif-plugin>=1.4.0
+pillow-heif>=0.16.0
+opencv-python>=4.9.0
+numpy>=1.24.0
+huggingface-hub>=0.23.0

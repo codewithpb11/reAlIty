@@ -21,7 +21,7 @@ from transformers import AutoImageProcessor, SiglipForImageClassification
 from media_utils import load_image
 from video_utils import extract_frames
 
-MODEL_ID = "./reality-finetuned/final"   # instead of "Ateeqq/ai-vs-human-image-detector"
+MODEL_ID = "pb11-x/reality-detector-model"   # instead of "Ateeqq/ai-vs-human-image-detector"
 
 # Loaded lazily so the app window can open instantly; the model only
 # downloads/loads the first time a detection is actually run.

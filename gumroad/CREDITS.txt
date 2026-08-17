@@ -1,0 +1,22 @@
+reAlIty — Credits & Attributions
+=================================
+
+Software
+  reAlIty desktop app — Copyright (c) 2026 Pramit
+  Licensed under the MIT License (see LICENSE file).
+
+Base model
+  Ateeqq/ai-vs-human-image-detector
+  https://huggingface.co/Ateeqq/ai-vs-human-image-detector
+
+Training data (MIT licensed)
+  Parveshiiii/AI-vs-Real
+  https://huggingface.co/datasets/Parveshiiii/AI-vs-Real
+
+Architecture
+  SigLIP image classifier (Google)
+  https://huggingface.co/docs/transformers/model_doc/siglip
+
+Third-party libraries
+  PyTorch, Hugging Face Transformers, CustomTkinter, OpenCV, Pillow
+  — see requirements.txt for versions and respective licenses.

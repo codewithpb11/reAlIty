@@ -1,0 +1,118 @@
+GUMROAD LISTING — copy/paste into Gumroad dashboard
+======================================================
+
+PRODUCT NAME
+------------
+reAlIty — AI or Not? Desktop Detector
+
+
+URL SLUG (short link)
+---------------------
+reality-ai-detector
+(or: reality-ai-or-not)
+
+
+PRICE
+-----
+$15 USD  (recommended launch price)
+  • Gumroad takes ~10% + payment processing
+  • You can raise to $19 after first reviews
+
+
+TAGLINE / SUMMARY (shown in search & cards)
+-------------------------------------------
+Instantly check if an image or video is AI-generated or human-made. Runs 100% locally on your computer — nothing uploaded to the cloud.
+
+
+FULL DESCRIPTION (paste into the Description field)
+---------------------------------------------------
+Is that photo real, or AI?
+
+**reAlIty** is a desktop app that analyzes images and videos and tells you whether they're likely AI-generated or human-made — with a confidence score for each.
+
+Upload a file, hit Verify, and get a clear verdict in seconds.
+
+---
+
+**What you get**
+
+✓ Full desktop app (Python source + pre-trained model included)
+✓ Works offline — your files never leave your machine
+✓ Supports images (.jpg, .png, .webp, .avif) and videos (.mp4, .avi, .mov)
+✓ Video analysis samples multiple frames for a stable result
+✓ Flags heavy text/graphic overlays that can skew detection
+✓ Clean, minimal black-and-white interface
+✓ MIT license — use personally or commercially
+
+---
+
+**Who it's for**
+
+• Journalists and fact-checkers screening suspicious media
+• Educators teaching media literacy
+• Content creators verifying sources
+• Anyone curious whether something online is real
+
+---
+
+**How it works**
+
+reAlIty uses a fine-tuned SigLIP image classifier trained on thousands of AI and human images. For video, it samples frames and aggregates scores — no separate video model needed.
+
+---
+
+**Requirements**
+
+• Windows 10/11 (Mac/Linux supported with manual setup)
+• Python 3.10 or newer (free download)
+• ~2 GB free disk space
+• Internet for one-time dependency install
+
+Setup takes about 5 minutes. A step-by-step QUICKSTART.txt is included in the download.
+
+---
+
+**Important — please read**
+
+reAlIty is a **signal, not a verdict**. It's most accurate on clear-cut cases. Heavily edited, filtered, or ambiguous images can fool any detector. Do not rely on it alone for legal, journalistic, or high-stakes decisions. Results include a warning when graphic overlays (captions, arrows, redaction marks) are detected.
+
+---
+
+**Support**
+
+Reply to your Gumroad receipt email if you hit any setup issues. I respond within 48 hours.
+
+
+TAGS (add in Gumroad product settings)
+--------------------------------------
+ai detection
+deepfake detector
+media literacy
+desktop app
+image analysis
+video analysis
+fact checking
+python tool
+offline ai detector
+
+
+REFUND POLICY (optional, add in Gumroad settings or description)
+----------------------------------------------------------------
+7-day refund if the app doesn't run on your system. Contact me via your Gumroad receipt email.
+
+
+EMAIL RECEIPT CUSTOM MESSAGE (Gumroad → Settings → Email)
+---------------------------------------------------------
+Thanks for buying reAlIty!
+
+Unzip the download, then open QUICKSTART.txt for setup steps.
+
+Quick version:
+  1. Install Python 3.10+ (check "Add to PATH")
+  2. Open a terminal in the unzipped folder
+  3. Run: pip install -r requirements.txt
+  4. Run: python main.py
+
+Questions? Just reply to this email.
+
+— Pramit

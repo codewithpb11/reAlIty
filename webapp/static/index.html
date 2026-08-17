@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reAlIty — AI or Not? Find out.</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="logo">reAlIty</h1>
+            <p class="tagline">AI or Not? Find out.</p>
+        </header>
+
+        <!-- Upload Zone -->
+        <div class="upload-zone" id="uploadZone">
+            <div class="upload-content">
+                <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 16V4m0 0l-4 4m4-4l4 4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/>
+                </svg>
+                <p class="upload-text">Drop an image or video here</p>
+                <p class="upload-subtext">or click to browse</p>
+                <p class="upload-formats">JPG, PNG, WEBP, AVIF, MP4, AVI, MOV</p>
+            </div>
+            <input type="file" id="fileInput" accept="image/*,video/*" hidden>
+        </div>
+
+        <!-- Preview Area -->
+        <div class="preview-area" id="previewArea" style="display: none;">
+            <div class="preview-card">
+                <div class="preview-media" id="previewMedia"></div>
+                <div class="preview-info">
+                    <span class="preview-filename" id="previewFilename"></span>
+                    <span class="preview-badge" id="previewBadge">Image</span>
+                </div>
+            </div>
+            <button class="btn btn-verify" id="verifyBtn">
+                <span class="btn-text">Verify</span>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-area" id="progressArea" style="display: none;">
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progressBar"></div>
+            </div>
+            <p class="progress-status" id="progressStatus">Analyzing...</p>
+        </div>
+
+        <!-- Result Area -->
+        <div class="result-area" id="resultArea" style="display: none;">
+            <div class="result-card">
+                <div class="verdict" id="verdict">
+                    <span class="verdict-text" id="verdictText">Awaiting analysis</span>
+                </div>
+
+                <div class="score-grid">
+                    <div class="score-item">
+                        <span class="score-label">AI-Generated</span>
+                        <div class="score-bar-bg">
+                            <div class="score-bar-fill ai-bar" id="aiBar"></div>
+                        </div>
+                        <span class="score-value" id="aiScore">--%</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="score-label">Human-Made</span>
+                        <div class="score-bar-bg">
+                            <div class="score-bar-fill human-bar" id="humanBar"></div>
+                        </div>
+                        <span class="score-value" id="humanScore">--%</span>
+                    </div>
+                </div>
+
+                <div class="warning" id="warningBox" style="display: none;">
+                    <svg class="warning-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 9v2m0 4h.01M12 3a9 9 0 110 18 9 9 0 010-18z"/>
+                    </svg>
+                    <p class="warning-text" id="warningText"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clear Button -->
+        <button class="btn btn-clear" id="clearBtn" style="display: none;">Clear</button>
+
+        <!-- Error Toast -->
+        <div class="toast toast-error" id="errorToast" style="display: none;">
+            <span id="errorText"></span>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

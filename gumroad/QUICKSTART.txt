@@ -1,0 +1,103 @@
+reAlIty — Quick Start Guide
+============================
+
+Thank you for your purchase!
+
+reAlIty analyzes images and videos on your computer and tells you
+whether they are likely AI-generated or human-made. Everything runs
+locally — your files are never uploaded anywhere.
+
+
+REQUIREMENTS
+------------
+  • Windows 10 or 11 (Mac/Linux also work with the same steps)
+  • Python 3.10 or newer
+  • ~2 GB free disk space
+  • Internet connection (one-time, to install Python packages)
+
+
+STEP 1 — INSTALL PYTHON
+------------------------
+  1. Go to https://www.python.org/downloads/
+  2. Download Python 3.10 or newer
+  3. During install, CHECK the box "Add Python to PATH"
+  4. Click "Install Now"
+
+
+STEP 2 — INSTALL DEPENDENCIES
+------------------------------
+  1. Unzip this folder somewhere easy to find (e.g. Desktop\reAlIty)
+  2. Open Command Prompt or PowerShell IN THIS FOLDER
+     (Shift + right-click the folder → "Open in Terminal")
+  3. Run:
+
+       pip install -r requirements.txt
+
+     This takes 5–15 minutes the first time (downloads PyTorch, etc.).
+
+
+STEP 3 — LAUNCH THE APP
+------------------------
+  In the same terminal, run:
+
+       python main.py
+
+  The reAlIty window will open.
+
+
+STEP 4 — ANALYZE A FILE
+------------------------
+  1. Click "Upload Image / Video"
+  2. Pick any supported file
+  3. Click "Verify"
+  4. Read the verdict and confidence percentages
+
+  Supported formats:
+    Images — .jpg  .jpeg  .png  .webp  .avif
+    Videos — .mp4  .avi  .mov
+
+
+NOTES
+-----
+  • First analysis may take 10–30 seconds while the model loads into
+    memory. After that, results come back in a few seconds.
+  • If the app shows an overlay warning (text, arrows, circles on the
+    image), treat the result with extra caution — those edits can
+    confuse the detector.
+  • reAlIty gives you a signal, not a legal or forensic verdict.
+    Use your own judgment for anything with real consequences.
+
+
+TROUBLESHOOTING
+---------------
+  "python is not recognized"
+    → Reinstall Python and make sure "Add Python to PATH" is checked.
+
+  "No module named ..."
+    → Run:  pip install -r requirements.txt
+
+  "Could not find model" / path error
+    → Make sure you unzipped the FULL download and the folder
+      reality-finetuned/final/ exists next to main.py.
+
+  App is very slow
+    → First run is always slower (model loading). Close other heavy
+      apps. A computer with 8 GB+ RAM works best.
+
+  pip install fails on torch
+    → Make sure you have Python 3.10–3.12 (not 3.13+ unless torch
+      supports it). Try:  pip install torch --index-url https://download.pytorch.org/whl/cpu
+      then run  pip install -r requirements.txt  again.
+
+
+SUPPORT
+-------
+  Reply to your Gumroad receipt email with:
+    • Your operating system (e.g. Windows 11)
+    • Python version (run: python --version)
+    • The exact error message
+
+  I'll get back to you as soon as I can.
+
+
+Enjoy using reAlIty!
