@@ -14,6 +14,16 @@ import {
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
+// ─── AdMob Banner ───
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
+
+// Use test ads during development (switch to false before publishing)
+const USE_TEST_ADS = false;
+
+// Your real Ad Unit ID
+const PRODUCTION_BANNER_ID = 'ca-app-pub-7515758880668920/9199962467';
+const BANNER_AD_UNIT_ID = USE_TEST_ADS ? TestIds.BANNER : PRODUCTION_BANNER_ID;
+
 // ─── CONFIG: Set your deployed API URL here ───
 const API_URL = 'https://your-backend-url.com';  // <-- CHANGE THIS after deploying
 // const API_URL = 'http://192.168.1.x:8000';    // <-- For local testing on same WiFi
@@ -211,6 +221,17 @@ export default function App() {
             <Text style={styles.btnClearText}>Clear</Text>
           </TouchableOpacity>
         )}
+
+        {/* Banner Ad */}
+        <View style={styles.adContainer}>
+          <BannerAd
+            unitId={BANNER_AD_UNIT_ID}
+            size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+            requestOptions={{
+              requestNonPersonalizedAdsOnly: true,
+            }}
+          />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -405,5 +426,10 @@ const styles = StyleSheet.create({
   btnClearText: {
     color: '#8a8a8a',
     fontSize: 13,
+  },
+  adContainer: {
+    marginTop: 20,
+    width: width - 40,
+    alignItems: 'center',
   },
 });

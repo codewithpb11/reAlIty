@@ -24,7 +24,10 @@
         "backgroundColor": "#0d0d0d"
       },
       "package": "com.yourcompany.reality",
-      "versionCode": 1
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "plugins": [
       [
@@ -36,15 +39,15 @@
       [
         "react-native-google-mobile-ads",
         {
-          "androidAppId": "ca-app-pub-xxxxxxxxxxxxxxxx~xxxxxxxxxx",
-          "iosAppId": "ca-app-pub-xxxxxxxxxxxxxxxx~xxxxxxxxxx"
+          "androidAppId": "ca-app-pub-7515758880668920~8078452486"
         }
       ]
     ],
     "extra": {
       "eas": {
-        "projectId": "your-eas-project-id"
+        "projectId": "d67e4361-7d7b-4ef9-8f49-d8403e3337fe"
       }
-    }
+    },
+    "owner": "x_coldfire_x"
   }
 }
