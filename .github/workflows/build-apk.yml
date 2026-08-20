@@ -27,7 +27,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: mobile-app
-        run: npm ci
+        run: npm install
 
       - name: Build Android APK
         working-directory: mobile-app
