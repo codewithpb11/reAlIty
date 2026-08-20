@@ -16,7 +16,6 @@
     "lottie-react-native": "^6.7.0",
     "react": "18.2.0",
     "react-native": "0.74.0",
-    "react-native-google-mobile-ads": "~13.6.1",
     "react-native-progress": "^5.0.1",
     "react-native-svg": "15.2.0"
   },
