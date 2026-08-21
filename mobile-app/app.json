@@ -24,7 +24,8 @@
         "backgroundColor": "#0d0d0d"
       },
       "package": "com.yourcompany.reality",
-      "versionCode": 1
+      "versionCode": 1,
+      "usesCleartextTraffic": true
     },
     "plugins": [
       [
