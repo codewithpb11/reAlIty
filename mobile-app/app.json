@@ -24,14 +24,21 @@
         "backgroundColor": "#0d0d0d"
       },
       "package": "com.yourcompany.reality",
-      "versionCode": 1,
-      "usesCleartextTraffic": true
+      "versionCode": 1
     },
     "plugins": [
       [
         "expo-image-picker",
         {
           "photosPermission": "The app needs access to your photos to analyze images for AI detection."
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
         }
       ]
     ],
