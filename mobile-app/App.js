@@ -15,8 +15,8 @@ import {
 import * as ImagePicker from 'expo-image-picker';
 
 // ─── CONFIG: Set your deployed API URL here ───
-const API_URL = 'https://192.168.0.101:15001';  // <-- CHANGE THIS after deploying
-// const API_URL = 'http://192.168.0.101:15001';    // <-- For local testing on same WiFi
+const API_URL = 'http://192.168.0.101:15001';  // <-- Local testing on same WiFi
+// const API_URL = 'https://your-deployed-api.com';  // <-- Production API
 
 const { width } = Dimensions.get('window');
 
