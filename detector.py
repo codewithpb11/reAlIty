@@ -33,6 +33,18 @@ def _load_model():
     global _processor, _model
     if _model is None:
         _processor = AutoImageProcessor.from_pretrained(MODEL_ID)
+        # Load in half precision + memory-efficient mode to fit in 512MB Render free tier
+        _model = SiglipForImageClassification.from_pretrained(
+            MODEL_ID,
+            torch_dtype=torch.float16,
+            low_cpu_mem_usage=True,
+        )
+        _model.eval()
+        torch.set_num_threads(1)
+    return _processor, _model
+    global _processor, _model
+    if _model is None:
+        _processor = AutoImageProcessor.from_pretrained(MODEL_ID)
         _model = SiglipForImageClassification.from_pretrained(MODEL_ID)
         _model.eval()
         # Reduce PyTorch thread overhead for low-RAM environments (Render free tier)

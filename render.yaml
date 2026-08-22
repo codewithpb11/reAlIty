@@ -6,7 +6,8 @@ services:
     region: oregon
     buildCommand: |
       pip install -r requirements.txt
-      python -c "from huggingface_hub import snapshot_download; snapshot_download('pb11-x/reality-detector-model', cache_dir='/opt/render/.cache/huggingface')"
+      mkdir -p model_cache
+      HF_HOME=./model_cache python -c "from huggingface_hub import snapshot_download; snapshot_download('pb11-x/reality-detector-model')"
     startCommand: uvicorn webapp.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
@@ -14,6 +15,6 @@ services:
       - key: HF_TOKEN
         generateValue: false
       - key: HF_HOME
-        value: /opt/render/.cache/huggingface
+        value: ./model_cache
       - key: TRANSFORMERS_CACHE
-        value: /opt/render/.cache/huggingface
+        value: ./model_cache
