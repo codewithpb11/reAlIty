@@ -38,22 +38,6 @@ def _load_model():
         # Reduce PyTorch thread overhead for low-RAM environments (Render free tier)
         torch.set_num_threads(1)
     return _processor, _model
-    global _processor, _model
-    if _model is None:
-        _processor = AutoImageProcessor.from_pretrained(MODEL_ID)
-        # Load in float16 to halve RAM usage (critical for 512MB Render free tier)
-        _model = SiglipForImageClassification.from_pretrained(
-            MODEL_ID,
-            torch_dtype=torch.float16,
-        )
-        _model.eval()
-    return _processor, _model
-    global _processor, _model
-    if _model is None:
-        _processor = AutoImageProcessor.from_pretrained(MODEL_ID)
-        _model = SiglipForImageClassification.from_pretrained(MODEL_ID)
-        _model.eval()
-    return _processor, _model
 
 
 def _check_overlay_bgr(frame_bgr, sat_thresh=160, val_thresh=130,
@@ -106,7 +90,7 @@ def detect_image_from_pil(image: Image.Image) -> dict:
     with torch.no_grad():
         probs = torch.softmax(model(**inputs).logits, dim=1)[0]
     labels = model.config.id2label
-    return {labels[i]: round(probs[i].item() * 100, 2) for i in range(len(probs))}
+    return {labels[i]: round(probs[i].item() * 100, 2) for i in range(len(labels))}
 
 
 def detect_image(image_path: str) -> dict:
