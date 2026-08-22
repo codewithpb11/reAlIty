@@ -21,10 +21,8 @@ from transformers import AutoImageProcessor, SiglipForImageClassification
 from media_utils import load_image
 from video_utils import extract_frames
 
-MODEL_ID = "pb11-x/reality-detector-model"   # instead of "Ateeqq/ai-vs-human-image-detector"
+MODEL_ID = "pb11-x/reality-detector-model"
 
-# Loaded lazily so the app window can open instantly; the model only
-# downloads/loads the first time a detection is actually run.
 _processor = None
 _model = None
 
@@ -33,7 +31,6 @@ def _load_model():
     global _processor, _model
     if _model is None:
         _processor = AutoImageProcessor.from_pretrained(MODEL_ID)
-        # Load in half precision + memory-efficient mode to fit in 512MB Render free tier
         _model = SiglipForImageClassification.from_pretrained(
             MODEL_ID,
             torch_dtype=torch.float16,
@@ -42,35 +39,10 @@ def _load_model():
         _model.eval()
         torch.set_num_threads(1)
     return _processor, _model
-    global _processor, _model
-    if _model is None:
-        _processor = AutoImageProcessor.from_pretrained(MODEL_ID)
-        _model = SiglipForImageClassification.from_pretrained(MODEL_ID)
-        _model.eval()
-        # Reduce PyTorch thread overhead for low-RAM environments (Render free tier)
-        torch.set_num_threads(1)
-    return _processor, _model
 
 
 def _check_overlay_bgr(frame_bgr, sat_thresh=160, val_thresh=130,
                         min_vivid_fraction=0.003, edge_density_thresh=0.15):
-    """
-    Heuristic check for likely overlaid text, arrows, circles, or captions.
-
-    Looks for regions of vivid, flat color (uncommon in raw camera photos)
-    that are ALSO visually "busy" with sharp edges - the way text strokes
-    and arrow/circle outlines are, but a plain colored shirt or background
-    usually isn't. Requiring both signals together is what keeps this from
-    flagging every colorful photo as "AI-suspicious content."
-
-    This is an approximation, not a perfect detector: a perfectly smooth,
-    texture-free solid-color block can slip through, and unusual real-world
-    scenes could occasionally be flagged. It's meant to catch the common
-    cases (captions, arrows, circles, small overlaid numbers), not guarantee
-    zero errors.
-
-    Returns (overlay_detected: bool, vivid_area_pct: float)
-    """
     hsv = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2HSV)
     s, v = hsv[:, :, 1], hsv[:, :, 2]
     vivid_mask = ((s > sat_thresh) & (v > val_thresh)).astype(np.uint8)
@@ -93,10 +65,6 @@ def _check_overlay_bgr(frame_bgr, sat_thresh=160, val_thresh=130,
 
 
 def detect_image_from_pil(image: Image.Image) -> dict:
-    """
-    Run detection on a PIL Image.
-    Returns e.g. {'ai': 92.4, 'hum': 7.6}
-    """
     processor, model = _load_model()
     inputs = processor(images=image, return_tensors="pt")
     with torch.no_grad():
@@ -106,10 +74,6 @@ def detect_image_from_pil(image: Image.Image) -> dict:
 
 
 def detect_image(image_path: str) -> dict:
-    """
-    Run detection on an image file path, plus the overlay/graphic check.
-    Returns e.g. {'ai': 92.4, 'hum': 7.6, 'overlay_detected': False, 'overlay_pct': 0.0}
-    """
     image = load_image(image_path)
     result = detect_image_from_pil(image)
 
@@ -121,21 +85,6 @@ def detect_image(image_path: str) -> dict:
 
 
 def detect_video(video_path: str, num_frames: int = 10, progress_callback=None) -> dict:
-    """
-    Run detection on a video by sampling frames.
-
-    Uses the MEDIAN across sampled frames rather than the mean, so a
-    handful of graphic-heavy frames (a title card, an annotated moment)
-    don't swing the whole result as much as they would with a plain
-    average. Also flags if a meaningful share of sampled frames contain
-    heavy text/graphic overlays.
-
-    progress_callback: optional fn(current, total) called after each frame
-    is processed, useful for driving a GUI progress bar.
-
-    Returns e.g. {'ai': 12.0, 'hum': 88.0, 'overlay_detected': True, 'overlay_pct': 6.4}
-    or {'error': '...'} on failure.
-    """
     frames = extract_frames(video_path, num_frames)
     if not frames:
         return {"error": "Could not read this video file."}
@@ -162,7 +111,6 @@ def detect_video(video_path: str, num_frames: int = 10, progress_callback=None) 
         for label in labels
     }
 
-    # Flag if at least a third of sampled frames show heavy overlay content
     result["overlay_detected"] = (sum(overlay_flags) / len(overlay_flags)) >= 0.3
     result["overlay_pct"] = round(sum(overlay_pcts) / len(overlay_pcts), 2)
     return result
